@@ -1,10 +1,13 @@
 import React, {Component} from "react";
 import {View, Text, StyleSheet,TouchableHighlight} from "react-native"
 import mycolors from "../colors/mycolors";
+import Icons from "react-native-vector-icons/AntDesign";
+
 
 interface MyProps {
     title: string,
-    onPressEvent: Function
+    onPressEvent: Function,
+    iconname: string
 }
 class MyBotton extends Component<MyProps, any>{
  constructor(props: MyProps){
@@ -15,17 +18,19 @@ class MyBotton extends Component<MyProps, any>{
  }
 
  render() {
-     return <View>
-         <TouchableHighlight onPress={() => {
+     return <TouchableHighlight onPress={() => {
           this.clickOnButton();
-        }}>
-          <View style={styles.containerbuton}>
+        }} style={styles.containerbuton} >
+          <View style={styles.buttonStyle}>
+            <View>
+                <Icons name={this.props.iconname} size={20} color={mycolors.three} />              
+            </View>
             <Text>
               {this.props.title}
             </Text>
           </View>
         </TouchableHighlight>
-     </View>
+
  }
 }
 var styles = StyleSheet.create({
@@ -33,7 +38,13 @@ var styles = StyleSheet.create({
         padding: 10,//espacio d los lados
         backgroundColor: mycolors.four,
         borderRadius: 10,//eliminar las esquinas
-        marginVertical: 15
+        marginVertical: 15,
+        justifyContent: "center",
+        margin: 5,//espacio dentro d los botons
+        
       },
+      buttonStyle: {
+        flexDirection: "row"
+      }
 })
 export default MyBotton;
